@@ -33,24 +33,21 @@ def print_bill():
     phone_no=int(e3.get())
     email_id=e4.get()
     bill_no=random.randint(898464,946523)
-    print("""
-             -----------------------------------------------------------
-            [===========================================================]
-            [====================HOTEL ITALIZOIA========================]
-            [===========================================================]
-              ----------------------------------------------------------
-                                                                         """)
 
-    print("#########################",name,"'s BILL ##################################")
-    print("                         BILL NO.",bill_no)
-    print("                 COSTUMER'S NAME      :",name)
-    print("                 COSTUMER'S PHONE NO. :",phone_no)
-    print("                 COSTUMER'S EMAIL_ID  :",email_id)
-    print("                 COSTUMER'S ADDRESS   :",address)
-    print("                 COSTUMER'S ROOM TYPE :",room)
-    print("                 BILL PAYMENT METHOD  :",payment)
-    print("                   TOTAL BILL         :",total,"appox.")
-    print("##################### THANK YOU !!! VISIT US AGIAN ######################## ")
+    # Open a file for writing
+    with open("output.txt", "w") as f:
+        # Write the output to the file
+        f.write("#####################    WELCOME TO ITALIONIC HOTEL   #####################\n")
+        f.write("                   "+name + "'s BILL\n")
+        f.write(" \n                        BILL NO." + str(bill_no))
+        f.write("   \n              COSTUMER'S NAME     :" + name)
+        f.write("   \n              COSTUMER'S PHONE NO. :" + str(phone_no))
+        f.write("   \n              COSTUMER'S EMAIL_ID  :" + email_id)
+        f.write("    \n             COSTUMER'S ADDRESS   :" + address)
+        f.write("     \n            COSTUMER'S ROOM TYPE :" + room)
+        f.write("     \n            BILL PAYMENT METHOD  :" + payment)
+        f.write("      \n             TOTAL BILL         :" + str(total) + "appox.")
+        f.write("\n##################### THANK YOU !!! VISIT US AGIAN ########################")
 
 
 #function to get all the data from the user to import into the files 
@@ -252,5 +249,4 @@ button1.place(x=890,y=110)
 button2=Button(root,text=" PRINT BILL",font="times 15 bold",padx=25 ,pady=50,command=print_bill)
 button2.place(x=790,y=520)
 root.mainloop()
-
 
