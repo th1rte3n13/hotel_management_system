@@ -1,6 +1,7 @@
 #all modules needed
 from tkinter import *
 from subprocess import call
+import sqlite3
 
 #function to print the bill whem pressed print button 
 def print_bill():
@@ -102,7 +103,18 @@ def get_data():
     f.close()
     file.close()
 
+    #pushing data to sqlite3
+    conn = sqlite3.connect('dbhms.db')
+    cursor = conn.cursor()
+
+    cursor.execute("INSERT INTO visitors (vname, vaddress, phno, emailid, roomno, roomtype, vpayment, vtotal, vdate, vtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (name, address, phone_no, email_id, room_no, room_type, payment, total, d1, current_time))
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
     #display all data that is given by the user 
+    
     label17=Label(root,text="(data updated as :)",font="times 15 bold")
     label17.place(x=50,y=485)
     
@@ -249,4 +261,3 @@ button1.place(x=890,y=110)
 button2=Button(root,text=" PRINT BILL",font="times 15 bold",padx=25 ,pady=50,command=print_bill)
 button2.place(x=790,y=520)
 root.mainloop()
-
